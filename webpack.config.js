@@ -8,15 +8,15 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-    mode: 'development',
-    entry: {
-        bundle:path.resolve(__dirname, 'src/index.js'),
+    mode:'development',
+    entry:{
+        bundle: path.resolve(__dirname, 'src/index.js'),
     },
     output:{
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name][contenthash].js',
+        filename:'[name][contenthash].js',
         clean:true,
-        assetModuleFilename:'[name][ext]'
+        assetModuleFilename: '[name][ext]',
     },
     devtool:'source-map',
     devServer:{
@@ -26,37 +26,40 @@ module.exports = {
         port:3000,
         open:true,
         hot:true,
-        compress: true,
-        historyApiFallback: true,
+        compress:true,
+        historyApiFallback:true,
     },
     module:{
         rules:[
             {
-            test:/\.sccs$/,
-            use:[
-                'style-loader',
-                'css-loader',
-                'sass-loader'
-            ],
-            },
-            {
-                test:/\.js$/,
-                exclude:/node_modules/,
-                use:{
-                    loader:'babel-loader',
-                    options: {
-                        presets:['@babel/preset-env']
-                    }
+            test:/\.scss$/,
+            use:['style-loader', 'css-loader', 'sass-loader']
+        },
+        {
+            test: /\.css$/i,
+            use:['style-loader', 'css-loader'],
+        },
+        {
+            test: /\.js$/,
+            exclude:/node_modules/,
+            use:{
+                loader:'babel-loader',
+                options:{
+                    presets:['@babel/preset-env']
                 }
-            },
-            {
-                test:/\.(png|.jpg|.gif|.svg|.jpeg)$/i,
-                type:'asset/resource'
             }
-        ],
-        
+        },
+        {
+            test:/\.(png|svg|jpg|jpeg|gif)$/i,
+            type:'asset/resource',
+            resolve: {    
+                modules: [
+                  path.join(__dirname, '../node_modules')
+                ]
+              }
+        }
+    ],
     },
-
     plugins:[
         new HtmlWebpackPlugin({
             title: 'Webpack App',
