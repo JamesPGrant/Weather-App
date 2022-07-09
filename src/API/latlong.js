@@ -13,6 +13,7 @@ async function latLonggetAPI(lat, long, mode) {
         res.main.feels_like,
         res.name,
         mode,
+        res.weather,
       );
       display(weather);
       localStorage.setItem('weather', JSON.stringify(weather));

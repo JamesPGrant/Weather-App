@@ -6,9 +6,9 @@ function showPosition(position) {
   latLonggetAPI(lat.toString(), long.toString(), 'imperial');
 }
 
-function getLocation() {
+function getLocation(value) {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
+    navigator.geolocation.getCurrentPosition(showPosition, value);
   } else {
     console.log('This action is not supported by this browser');
   }

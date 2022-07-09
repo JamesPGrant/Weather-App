@@ -1,6 +1,7 @@
 import Weather from '../Weather';
 import display from '../Functionality/display';
 
+const errorText = document.querySelector('.error');
 async function getWeather(value, mode) {
   fetch(`http://api.openweathermap.org/data/2.5/weather?q=${value}&units=${mode}&APPID=306b3aa8a1088f4bc0b9639939879ea2`, {
     mode: 'cors',
@@ -13,12 +14,15 @@ async function getWeather(value, mode) {
         res.main.feels_like,
         res.name,
         mode,
+        res.weather,
       );
-      console.log(res);
-      console.log(weather, weather.type);
       display(weather);
       localStorage.setItem('weather', JSON.stringify(weather));
       return weather;
+    })
+    .catch((error) => {
+      errorText.textContent = 'Input must be a valid location';
+      return error;
     });
 }
 

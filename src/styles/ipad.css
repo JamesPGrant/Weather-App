@@ -1,0 +1,24 @@
+#tvscreen {
+    position: absolute;
+    right:15px;
+    bottom:2px;
+    width: 200px;
+    height: 150px;
+    margin: 20px 10px;
+    background: #0809fe;
+    border-radius: 50% / 10%;
+    color: white;
+    text-align: center;
+    text-indent: .1em;
+   }
+   #tvscreen:before {
+    content: "";
+    position: absolute;
+    top: 10%;
+    bottom: 10%;
+    right: -5%;
+    left: -5%;
+    background: inherit;
+    border-radius: 5% / 50%;
+   }
+   
